@@ -1,0 +1,28 @@
+(section){{
+    (h1){{Throughput in UI}}
+    (p){{
+        I will showcase two different layouts for the same content with the same design elements.
+    }}
+
+    (ol){{
+        (li){{
+            This one, compared to the other one is arguably less cluttered, more clean: the tags are laid out in a single line and there's more margin space. It is meant to be scrolled horizontally.
+            There's also an artistic touch to it in that the space on the left extends beyond the fixed margin size as long as the tags continue.
+            (div){{
+                (img){{(src){{link/to/image.png}}}}
+                (img){{(src){{link/to/image.png}}}}
+            }}
+        }}
+        (li){{
+            This on the other hand is more compact. It puts more stuff per unit space. Yet it is still organized. This organizedness is achieved by via the right proportions and composition. An important difference from the first design is that with this one much more content fits into a single viewport: while the previous example fits two-three items per viewport, this one fits nine. A downside is that it arguably, although organized, feels more cluttered than the first example. Also, there's less space for artistic expression, at least with regards to space.
+            (div){{
+                (img){{(src){{link/to/image.png}}}}
+            }}
+        }}
+    }}
+
+    (h2){{UX differences between single-row horizontal and multi-column vertical layouts}}
+    (h3){{Usecase: before choosing which item to proceed with, get an overview of all of them}}
+    I certainly do this: I first look at as much as possible links, remember which ones are more interesting to me and only after that do I return to them and pick some.
+    Now, with single-row horizontal layout, where you only see two-three items a time, it's cumbersome: you have to scroll a lot and then scroll back to find each of the items that interested you. With a usual multi-column layout, this is easier.
+}}
