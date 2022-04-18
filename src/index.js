@@ -2,8 +2,6 @@ import {readFile, writeFile} from 'fs/promises'
 import nearley from 'nearley'
 import grammar from 'htmlat/src/grammar/grammar.js'
 
-const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
-
 const logs = []
 
 function log(...args) {
@@ -13,6 +11,7 @@ function log(...args) {
 
 async function convert(src, dest) {
     const i = await readFile(src, 'utf8')
+    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
     parser.feed(i)
 
     log(parser.results[0])
