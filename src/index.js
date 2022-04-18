@@ -14,7 +14,10 @@ function log(...args) {
 async function convert(src, dest) {
     const i = await readFile(src, 'utf8')
     parser.feed(i)
+
     log(parser.results[0])
+
+    await writeFile(dest, JSON.stringify(parser.results[0], null, 2))
 }
 
 function main() {
