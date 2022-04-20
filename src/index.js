@@ -1,5 +1,6 @@
 import {readFile, writeFile} from 'fs/promises'
-import {convert as _convert} from 'htmlat-raw/src/index.js'
+import {convert as _convert_raw} from 'htmlat-raw/src/index.js'
+import {convert as _convert_rich} from 'htmlat-rich/src/index.js'
 
 import {JSDOM} from 'jsdom'
 
@@ -10,11 +11,13 @@ function log(...args) {
     console.log(...args)
 }
 
-async function convert(src, dest) {
+async function convert(src, dest, raw) {
     const i = await readFile(src, 'utf8')
 
     const Dom = new JSDOM("<!DOCTYPE html><main></main>")
-    const dom = _convert(i, Dom.window.document)
+    const dom = raw
+        ? _convert_raw(i, Dom.window.document)
+        : _convert_rich(i, Dom.window.document)
 
     Dom.window.document.querySelector('main').appendChild(dom)
 
