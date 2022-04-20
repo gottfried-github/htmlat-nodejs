@@ -17,7 +17,7 @@
   "author": "gottfried",
   "license": "MIT",
   "dependencies": {
-    "htmlat": "file:../htmlat",
+    "htmlat-raw": "file:../htmlat-raw",
     "jsdom": "^19.0.0"
   }
 }

@@ -1,5 +1,5 @@
 import {readFile, writeFile} from 'fs/promises'
-import {convert as _convert} from 'htmlat/src/index.js'
+import {convert as _convert} from 'htmlat-raw/src/index.js'
 
 import {JSDOM} from 'jsdom'
 
