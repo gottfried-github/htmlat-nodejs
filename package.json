@@ -18,7 +18,6 @@
   "license": "MIT",
   "dependencies": {
     "htmlat": "file:../htmlat",
-    "jsdom": "^19.0.0",
-    "nearley": "^2.20.1"
+    "jsdom": "^19.0.0"
   }
 }
