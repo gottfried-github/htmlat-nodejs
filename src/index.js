@@ -12,11 +12,11 @@ function log(...args) {
     console.log(...args)
 }
 
-async function convert(src, dest, raw) {
+async function convert(src, dest, options) {
     const i = await readFile(src, 'utf8')
 
     const Dom = new JSDOM("<!DOCTYPE html><main></main>")
-    const dom = raw
+    const dom = options.raw
         ? _convert_raw(i, Dom.window.document)
         : _convert_rich(i, Dom.window.document, {spanTextNodes: true})
 
@@ -25,7 +25,7 @@ async function convert(src, dest, raw) {
     // console.log("converted, with span text nodes", Dom.window.document.querySelector('main').innerHTML)
 
     const domStr = sanitize(Dom.window.document.querySelector('main').innerHTML, {
-        allowedTags: raw ? TAGS_RAW : TAGS_RICH,
+        allowedTags: options.raw ? TAGS_RAW : TAGS_RICH,
         allowedAttributes: {'*': ['data-*'], ...sanitize.defaults.allowedAttributes},
     })
 
@@ -36,11 +36,14 @@ async function convert(src, dest, raw) {
 
     // console.log("with span text nodes converted to Text nodes", Dom.window.document.documentElement.outerHTML)
 
-    await writeFile(dest, Dom.serialize())
+    await writeFile(dest, options.wrap ? Dom.serialize() : Dom.window.document.querySelector('main').innerHTML)
 }
 
 function main() {
-    convert(...process.argv.slice(2))
+    const io = process.argv.slice(2, 4), rest = process.argv.slice(4)
+    const raw = rest.includes('--raw'), wrap = rest.includes('--wrap')
+    
+    convert(...io, {raw, wrap})
 }
 
 if ('production' === process.env.NODE_ENV) main()
