@@ -4,9 +4,6 @@
   "description": "convert htmlat to html: uses the htmlat parser",
   "main": "src/index.js",
   "type": "module",
-  "bin": {
-      "htmlat": "./src/cli.js"
-  },
   "scripts": {
     "test": "/"
   },
