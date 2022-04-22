@@ -18,7 +18,10 @@ async function convert(src, dest, options) {
     const Dom = new JSDOM("<!DOCTYPE html><main></main>")
     const dom = options.raw
         ? _convert_raw(i, Dom.window.document)
-        : _convert_rich(i, Dom.window.document, {spanTextNodes: true})
+        : _convert_rich(i, Dom.window.document, {
+            // see 'Sanitizing encoded content doesn't work' in htmlat-rich
+            spanTextNodes: true
+        })
 
     Dom.window.document.querySelector('main').appendChild(dom)
 
@@ -30,8 +33,9 @@ async function convert(src, dest, options) {
     })
 
     // console.log("sanitized, with span text nodes", domStr)
-    Dom.window.document.querySelector('main').innerHTML = domStr
 
+    // spanToTextTextNodes works with dom
+    Dom.window.document.querySelector('main').innerHTML = domStr
     spanToTextTextNodes(Dom.window.document.querySelector('main'), Dom.window.document)
 
     // console.log("with span text nodes converted to Text nodes", Dom.window.document.documentElement.outerHTML)
