@@ -1,5 +1,5 @@
 # Nodejs `htmlat` to `html` converter
-* Sanitizes the output html with [`sanitize-html`](https://www.npmjs.com/package/sanitize-html). See `'XSS prevention'` in `htmlat-rich`
+* Sanitizes the output html with [`sanitize-html`](https://www.npmjs.com/package/sanitize-html). See ['XSS prevention' in `htmlat-rich`](https://github.com/gottfried-github/htmlat-rich#xss-prevention)
 * uses [`JSDOM`](https://www.npmjs.com/package/jsdom)
 
 ## Install

@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "/"
+    "test": "https://github.com/gottfried-github/htmlat-nodejs"
   },
   "repository": {
     "type": "git",
