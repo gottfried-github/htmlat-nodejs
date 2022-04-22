@@ -19,6 +19,7 @@
   "dependencies": {
     "htmlat-raw": "file:../htmlat-raw",
     "htmlat-rich": "file:../htmlat-rich",
-    "jsdom": "^19.0.0"
+    "jsdom": "^19.0.0",
+    "sanitize-html": "^2.7.0"
   }
 }
