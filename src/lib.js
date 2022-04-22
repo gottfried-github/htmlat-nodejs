@@ -39,15 +39,4 @@ async function convert(src, dest, options) {
     await writeFile(dest, options.wrap ? Dom.serialize() : Dom.window.document.querySelector('main').innerHTML)
 }
 
-function main() {
-    const io = process.argv.slice(2, 4), rest = process.argv.slice(4)
-    const raw = rest.includes('--raw'), wrap = rest.includes('--wrap')
-    
-    convert(...io, {raw, wrap})
-}
-
-if ('production' === process.env.NODE_ENV) main()
-
-export {
-    main, convert, logs, log
-}
+export {convert, logs, log}
