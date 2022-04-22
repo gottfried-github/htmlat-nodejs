@@ -18,4 +18,4 @@ convert('src/my-blogpost.semtext', 'dist/my-blogpost.html', {wrap: true})
 Whether to wrap the resulting html in an html document (i.e., `<!DOCTYPE html><html><body>your content here</body></html>`).
 
 ## cli
-[`htmlat-cli`]() provides a nice cli for this module.
+[`htmlat-cli`](#) provides a nice cli for this module.
