@@ -8,6 +8,9 @@
 ## Use
 ```javascript
 import {convert} from 'htmlat-nodejs'
+const htmlStr = convert('(article){{(p){{my blog content here}}}}', {wrap: true})
+
+import {convertFile} from 'htmlat-nodejs'
 convert('src/my-blogpost.semtext', 'dist/my-blogpost.html', {wrap: true})
 ```
 

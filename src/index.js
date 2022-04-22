@@ -12,9 +12,7 @@ function log(...args) {
     console.log(...args)
 }
 
-async function convert(src, dest, options) {
-    const i = await readFile(src, 'utf8')
-
+function convert(i, options) {
     const Dom = new JSDOM("<!DOCTYPE html><main></main>")
     const dom = options.raw
         ? _convert_raw(i, Dom.window.document)
@@ -40,7 +38,15 @@ async function convert(src, dest, options) {
 
     // console.log("with span text nodes converted to Text nodes", Dom.window.document.documentElement.outerHTML)
 
-    await writeFile(dest, options.wrap ? Dom.serialize() : Dom.window.document.querySelector('main').innerHTML)
+    return options.wrap ? Dom.serialize() : Dom.window.document.querySelector('main').innerHTML
 }
 
-export {convert, logs, log}
+async function convertFile(src, dest, options) {
+    const i = await readFile(src, 'utf8')
+
+    const o = convert(i, options || {})
+
+    await writeFile(dest, o)
+}
+
+export {convert, convertFile, logs, log}
