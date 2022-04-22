@@ -17,7 +17,7 @@
   "author": "gottfried",
   "license": "MIT",
   "dependencies": {
-    "htmlat-rich": "file:../htmlat-rich",
+    "htmlat-rich": "^0.1.0",
     "jsdom": "^19.0.0",
     "sanitize-html": "^2.7.0"
   }
