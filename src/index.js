@@ -2,7 +2,7 @@ import {readFile, writeFile} from 'fs/promises'
 import {JSDOM} from 'jsdom'
 import sanitize from 'sanitize-html'
 import {convert as _convert_raw, TAGS as TAGS_RAW} from 'htmlat-raw/src/index.js'
-import {convert as _convert_rich, TAGS as TAGS_RICH} from 'htmlat-rich/src/index.js'
+import {convert as _convert_rich, spanToTextTextNodes, TAGS as TAGS_RICH} from 'htmlat-rich/src/index.js'
 
 
 const logs = []
@@ -18,16 +18,33 @@ async function convert(src, dest, raw) {
     const Dom = new JSDOM("<!DOCTYPE html><main></main>")
     const dom = raw
         ? _convert_raw(i, Dom.window.document)
-        : _convert_rich(i, Dom.window.document)
+        : _convert_rich(i, Dom.window.document, {spanTextNodes: true})
 
     Dom.window.document.querySelector('main').appendChild(dom)
-    console.log(Dom.window.document.documentElement.outerHTML)
-    const domStr = sanitize(Dom.window.document.documentElement.outerHTML, {
+
+    console.log("converted, with span text nodes", Dom.window.document.querySelector('main').innerHTML)
+
+    const domStr = sanitize(Dom.window.document.querySelector('main').innerHTML, {
         allowedTags: raw ? TAGS_RAW : TAGS_RICH,
-        allowedAttributes: {'*': ['data-*'], ...sanitize.defaults.allowedAttributes}
+        allowedAttributes: {'*': ['data-*'], ...sanitize.defaults.allowedAttributes},
+        // transformTags: {
+        //     '*': (tagname, attrs) => {
+        //         if ('data-semtext-text' in attrs) return {
+        //             tagName: // a Text node doesn't have a tagName (does it)
+        //             attribs: null
+        //         }
+        //     }
+        // }
     })
 
-    await writeFile(dest, domStr)
+    console.log("sanitized, with span text nodes", domStr)
+    Dom.window.document.querySelector('main').innerHTML = domStr
+
+    spanToTextTextNodes(Dom.window.document.querySelector('main'), Dom.window.document)
+
+    console.log("with span text nodes converted to Text nodes", Dom.window.document.documentElement.outerHTML)
+
+    await writeFile(dest, Dom.serialize())
 }
 
 function main() {
