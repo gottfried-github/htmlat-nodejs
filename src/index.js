@@ -22,27 +22,19 @@ async function convert(src, dest, raw) {
 
     Dom.window.document.querySelector('main').appendChild(dom)
 
-    console.log("converted, with span text nodes", Dom.window.document.querySelector('main').innerHTML)
+    // console.log("converted, with span text nodes", Dom.window.document.querySelector('main').innerHTML)
 
     const domStr = sanitize(Dom.window.document.querySelector('main').innerHTML, {
         allowedTags: raw ? TAGS_RAW : TAGS_RICH,
         allowedAttributes: {'*': ['data-*'], ...sanitize.defaults.allowedAttributes},
-        // transformTags: {
-        //     '*': (tagname, attrs) => {
-        //         if ('data-semtext-text' in attrs) return {
-        //             tagName: // a Text node doesn't have a tagName (does it)
-        //             attribs: null
-        //         }
-        //     }
-        // }
     })
 
-    console.log("sanitized, with span text nodes", domStr)
+    // console.log("sanitized, with span text nodes", domStr)
     Dom.window.document.querySelector('main').innerHTML = domStr
 
     spanToTextTextNodes(Dom.window.document.querySelector('main'), Dom.window.document)
 
-    console.log("with span text nodes converted to Text nodes", Dom.window.document.documentElement.outerHTML)
+    // console.log("with span text nodes converted to Text nodes", Dom.window.document.documentElement.outerHTML)
 
     await writeFile(dest, Dom.serialize())
 }
