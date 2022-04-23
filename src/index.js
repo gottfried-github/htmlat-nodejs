@@ -29,7 +29,7 @@ function sanitizeWrap(wrap) {
 function sanitizeContent(content) {
     return sanitize(content, {
         allowedTags: TAGS_RICH,
-        allowedAttributes: {'*': ['data-*'], ...sanitize.defaults.allowedAttributes},
+        allowedAttributes: false,
     })
 }
 
