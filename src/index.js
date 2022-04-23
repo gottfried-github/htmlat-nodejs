@@ -48,11 +48,11 @@ function replaceScriptSrc(els) {
 }
 
 function convert(i, wrap) {
-    const _wrap = wrap ? sanitizeWrap(wrap) : "<!DOCTYPE html><main></main>"
+    const _wrap = wrap ? sanitizeWrap(wrap) : "<main></main>"
 
     // console.log("convert, _wrap:", _wrap);
 
-    const Dom = new JSDOM(_wrap)
+    const Dom = new JSDOM(`<!DOCTYPE html>${_wrap}`)
     if (wrap) {
         if (!Dom.window.document.querySelector('[data-slot]')) throw new Error("wrap content must have an element with data-slot attribute")
         replaceScriptSrc(Dom.window.document.querySelectorAll('[data-url-to-path]'))
@@ -88,7 +88,7 @@ async function convertFile(src, dest, wrap) {
         ? await readFile(wrap, 'utf8')
         : null
 
-    console.log("convertFile, wrapContent", wrapContent)
+    // console.log("convertFile, wrapContent", wrapContent)
 
     const o = convert(i, wrapContent)
 
