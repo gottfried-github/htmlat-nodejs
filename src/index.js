@@ -47,10 +47,10 @@ function replaceScriptSrc(els) {
     })
 }
 
-function convert(i, wrap, options) {
+function convert(i, wrap) {
     const _wrap = wrap ? sanitizeWrap(wrap) : "<!DOCTYPE html><main></main>"
 
-    console.log("convert, _wrap:", _wrap);
+    // console.log("convert, _wrap:", _wrap);
 
     const Dom = new JSDOM(_wrap)
     if (wrap) {
@@ -82,7 +82,7 @@ function convert(i, wrap, options) {
     return wrap ? Dom.serialize() : Dom.window.document.querySelector('main').innerHTML
 }
 
-async function convertFile(src, dest, wrap, options) {
+async function convertFile(src, dest, wrap) {
     const i = await readFile(src, 'utf8')
     const wrapContent = wrap
         ? await readFile(wrap, 'utf8')
@@ -90,7 +90,7 @@ async function convertFile(src, dest, wrap, options) {
 
     console.log("convertFile, wrapContent", wrapContent)
 
-    const o = convert(i, wrapContent, options || {})
+    const o = convert(i, wrapContent)
 
     await writeFile(dest, o)
 }
