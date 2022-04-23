@@ -17,7 +17,7 @@ function log(...args) {
 
 function sanitizeWrap(wrap) {
     return sanitize(wrap, {
-        allowedTags: ['html', 'body', 'head', 'link', 'meta', 'header', 'nav', 'aside', 'main', 'script',],
+        allowedTags: ['html', 'body', 'head', 'link', 'meta', 'header', 'nav', 'aside', 'main', 'div', 'script'],
         allowVulnerableTags: true,
         allowedAttributes: false,
         exclusiveFilter: (frame) => {

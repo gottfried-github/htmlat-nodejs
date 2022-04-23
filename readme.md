@@ -35,7 +35,7 @@ convertFile('src/my-blogpost.semtext', 'dist/my-blogpost.html', 'src/custom-wrap
 ```
 
 #### Allowed tags
-The following tags are allowed in a wrap: `html`, `body`, `head`, `link`, `meta`, `header`, `nav`, `aside`, `main`, `script`.
+The following tags are allowed in a wrap: `html`, `body`, `head`, `link`, `meta`, `header`, `nav`, `aside`, `main`, `div`, `script`.
 
 #### `data-slot`
 The content will be placed inside the element, which has the `data-slot` attribute. The wrap must have an element with this attribute.
