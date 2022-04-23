@@ -1,11 +1,11 @@
 {
   "name": "htmlat-nodejs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "convert htmlat to html: uses the htmlat parser",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "/"
+    "test": "https://github.com/gottfried-github/htmlat-nodejs"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,7 @@
   "author": "gottfried",
   "license": "MIT",
   "dependencies": {
-    "htmlat-raw": "file:../htmlat-raw",
-    "htmlat-rich": "file:../htmlat-rich",
+    "htmlat-rich": "^0.1.0",
     "jsdom": "^19.0.0",
     "sanitize-html": "^2.7.0"
   }
