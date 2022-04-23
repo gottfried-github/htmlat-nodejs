@@ -1,6 +1,6 @@
 {
   "name": "htmlat-nodejs",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "convert htmlat to html: uses the htmlat parser",
   "main": "src/index.js",
   "type": "module",
