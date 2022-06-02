@@ -8,10 +8,10 @@
 ## Use
 ```javascript
 import {convert} from 'htmlat-nodejs'
-const htmlStr = convert('(article){{(p){{my blog content here}}}}', {wrap: true})
+const htmlStr = convert('(article){{(p){{my blog content here}}}}')
 
 import {convertFile} from 'htmlat-nodejs'
-convertFile('src/my-blogpost.semtext', 'dist/my-blogpost.html', {wrap: true})
+convertFile('src/my-blogpost.semtext', 'dist/my-blogpost.html')
 ```
 
 ### Wrapping content in a document
